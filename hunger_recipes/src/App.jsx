@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import SearchBar from './components/SearchBar'
 import { useNavigate } from 'react-router-dom'
@@ -6,7 +7,23 @@ import MainIngredientList from './MainIngredientList'
 import RecipeDetails from './RecipeDetails'
 import './App.css'
 
+
 function App() {
+  
+  const BASE_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
+
+  const [meals, setMeals] = useState([])
+
+  useEffect(() => {
+    const getMeals = async () => {
+      const res = await axios.get(`${BASE_URL}chicken`)
+      let mealList = res.data.meals
+      console.log(mealList)
+      // setMeals(mealList)
+    }
+    getMeals()    
+  })
+  
 
   let navigate= useNavigate()
 
@@ -28,6 +45,7 @@ function App() {
   }
 
   return (
+
       <div className="Main">
     <Routes>
         <Route path="/json/v1/1/search.php?s=" element = {<MainIngredientList/>} />
