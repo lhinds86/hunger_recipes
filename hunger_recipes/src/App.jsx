@@ -18,7 +18,7 @@ function App () {
       const response = await axios.get (`${BASE_URL}${searchQuery}`)
       setMainIngredient(response.data.meals)
       }
-      getMeal()
+      // getMeal()
     
   
 
