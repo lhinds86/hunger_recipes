@@ -3,17 +3,6 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
 const MainIngredientList = (props) => {
-    
-        const [mainIngredient, setMainIngredient] = useState([])
-
-    useEffect(() => {
-        const getMainIngredient = async () => {
-          const response = await axios.get (`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
-          setMainIngredient(response.data.results)
-        }
-        getMainIngredient()
-      }, [])
-      console.log(mainIngredient)
    
     let navigate = useNavigate()
 
