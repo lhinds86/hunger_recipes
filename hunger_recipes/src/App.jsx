@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import SearchBar from './components/SearchBar'
 import { Route, Routes} from 'react-router-dom'
@@ -6,9 +7,11 @@ import RecipeDetails from './RecipeDetails'
 import './App.css'
 import axios from 'axios'
 
+
 function App () {
   
   const BASE_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
+
 
   const [mainIngredient, setMainIngredient] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -27,6 +30,7 @@ function App () {
   }
 
   return (
+
       <div className="Main">
     <Routes>
         <Route path="/mainIngredient" element = {<MainIngredientList mainIngredient={mainIngredient}/>} />
