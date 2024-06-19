@@ -10,11 +10,11 @@ let {id} = useParams()
         const [meal, setMeal] = useState()
 
     useEffect(() => {
-        const getMeal = async () => {
+        const getRecipe = async () => {
             const response = await axios.get (`https://www.themealdb.com/api/json/v1/1/search.php?s=`)
             setMeal(response.data.results[id])
           }
-          getMeal()
+          getRecipe()
         }, [])
       console.log(meal)
    
