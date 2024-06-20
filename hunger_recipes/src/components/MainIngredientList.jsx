@@ -9,7 +9,13 @@ const MainIngredientList = (props) => {
           navigate(`/mainIngredient/${meal.idMeal}`)
         }
 
+    const returnHome = () => {
+            navigate('/');
+          };
+          
     return (
+      <div className="MainIngredientList">
+        <button onClick={returnHome}>Return Home</button>
       <div className="main-ingredient-card">
        {props.meals.map((meal)=> (
            <div className="MainDiv" onClick={()=>showMeal(meal)} key={meal.idMeal}>
@@ -18,11 +24,12 @@ const MainIngredientList = (props) => {
             <ul>
                 <li>Name: {meal.strMeal}</li>
                 <li>Category: {meal.strCategory}</li>
-                <li>Area: {meal.strArea}</li>
+                <li>Area: {meal.strArea} </li>
             </ul>
         </div>
     ))}
     </div>
+   </div> 
     )
-    }   
+}
   export default MainIngredientList

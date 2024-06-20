@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const RecipeDetails = (props) => {
 
-  console.log('main project', props)
+  const navigate = useNavigate();
 
   const [meal, setMeal] = useState([])
   const [ingredients, setIngredients] = useState([])
@@ -12,13 +13,11 @@ const RecipeDetails = (props) => {
   const recipeToArray = (meal) => {
 
     let recipeArray = Object.entries(meal)
-    console.log(recipeArray)
 
     let ingredientsArray = recipeArray.filter((item) => item[0].includes('strIngredient') && item[1] !== '')
     
     if (ingredientsArray) {
       setIngredients(ingredientsArray)
-      console.log(ingredientsArray)  
     } else {
       console.log('Ingredients not set')
     }  
@@ -27,7 +26,6 @@ const RecipeDetails = (props) => {
     
     if(amountsArray) {
       setAmounts(amountsArray)
-      console.log(amountsArray)
     } else {
       console.log('Amounts not set')
     }
@@ -36,39 +34,35 @@ const RecipeDetails = (props) => {
   // this pulls the id from our url and allows us to find an object with it
   let { id } = useParams()
 
-  //console.log(useParams())
-
   useEffect(() => {
-
-    console.log('idMeal in useEffect', props.meals[0].idMeal)
-    console.log('id in useEffect', {id})
     
     let selectedRecipe = props.meals.find((meal) => meal.idMeal === id)
 
     console.log('Selected', selectedRecipe) // works
-      
-      //console.log(id.idMeal)
-      //parseInt(recipe.idMeal) === parseInt({id})
 
     if (selectedRecipe) {
       setMeal(selectedRecipe)
       recipeToArray(selectedRecipe)   
-      console.log(meal)
     } else {
       console.log('Recipe not set')
     }
     
   }, [props.meals, id])  
 
+  const returnPreviousPage= () => {
+    navigate('/mainIngredient')
+  }
+
   return meal ? (
     <div className="detail">
+      <button onClick={returnPreviousPage}>Previous Page</button>
       <img className="detail-img" src={meal.strMealThumb} alt={meal.strMeal}/>
       <h2>{meal.strMeal}</h2> 
       <ul style={{listStyleType: 'none'}}>
       {
         amounts.map((amount, index) => (
           <div className="list" key={amount[0]}>
-              <li>{amount[1]} {ingredients[index][1]}</li>
+              <li>{amount[1] && ingredients[index] ? `${amount[1]} ${ingredients[index][1]}` : null}</li>
           </div>
         ))
       }
