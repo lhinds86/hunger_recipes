@@ -10,10 +10,10 @@ const MainIngredientList = (props) => {
         }
 
     return (
-      <div className="MainIngredientList">
+      <div className="main-ingredient-card">
        {props.meals.map((meal)=> (
            <div className="MainDiv" onClick={()=>showMeal(meal)} key={meal.idMeal}>
-            <h2>MainIngredientList</h2>
+            <h2>{meal.strMeal}</h2>
             <img src={meal.strMealThumb} alt={meal.strMeal} />
             <ul>
                 <li>Name: {meal.strMeal}</li>
