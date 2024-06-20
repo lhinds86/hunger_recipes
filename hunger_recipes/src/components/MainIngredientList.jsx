@@ -21,8 +21,6 @@ const MainIngredientList = (props) => {
            <div className="MainDiv" onClick={()=>showMeal(meal)} key={meal.idMeal}>
             <h2>{meal.strMeal}</h2>
             <img src={meal.strMealThumb} alt={meal.strMeal} />
-            <h2>MainIngredientList</h2>
-            <img src={meal.strMealThumb} alt={meal.strMeal} />
             <ul>
                 <li>Name: {meal.strMeal}</li>
                 <li>Category: {meal.strCategory}</li>

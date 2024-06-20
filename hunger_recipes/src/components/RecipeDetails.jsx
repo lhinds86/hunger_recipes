@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const RecipeDetails = (props) => {
 
@@ -18,7 +18,6 @@ const RecipeDetails = (props) => {
     
     if (ingredientsArray) {
       setIngredients(ingredientsArray)
-      console.log(ingredientsArray)  
     } else {
       console.log('Ingredients not set')
     }  
@@ -27,7 +26,6 @@ const RecipeDetails = (props) => {
     
     if(amountsArray) {
       setAmounts(amountsArray)
-      console.log(amountsArray)
     } else {
       console.log('Amounts not set')
     }
@@ -36,24 +34,15 @@ const RecipeDetails = (props) => {
   // this pulls the id from our url and allows us to find an object with it
   let { id } = useParams()
 
-  //console.log(useParams())
-
   useEffect(() => {
-
-    console.log('idMeal in useEffect', props.meals[0].idMeal)
-    console.log('id in useEffect', {id})
     
     let selectedRecipe = props.meals.find((meal) => meal.idMeal === id)
 
     console.log('Selected', selectedRecipe) // works
-      
-      //console.log(id.idMeal)
-      //parseInt(recipe.idMeal) === parseInt({id})
 
     if (selectedRecipe) {
       setMeal(selectedRecipe)
       recipeToArray(selectedRecipe)   
-      console.log(meal)
     } else {
       console.log('Recipe not set')
     }
@@ -61,8 +50,8 @@ const RecipeDetails = (props) => {
   }, [props.meals, id])  
 
   const returnPreviousPage= () => {
-    navigate('/mainIngredient');
-  };
+    navigate('/mainIngredient')
+  }
 
   return meal ? (
     <div className="detail">
@@ -73,7 +62,7 @@ const RecipeDetails = (props) => {
       {
         amounts.map((amount, index) => (
           <div className="list" key={amount[0]}>
-              <li>{amount[1]} {ingredients[index][1]}</li>
+              <li>{amount[1] && ingredients[index] ? `${amount[1]} ${ingredients[index][1]}` : null}</li>
           </div>
         ))
       }
