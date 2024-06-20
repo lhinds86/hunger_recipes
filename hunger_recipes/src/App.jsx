@@ -29,7 +29,8 @@ function App () {
       <div className="Main">
         <SearchBar getMeal={getMeal} searchQuery={searchQuery} handleChange={handleChange} />
     <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Home />}/>
+        {/* <Route path='/' element={<Home getMeal={getMeal} searchQuery={searchQuery} handleChange={handleChange}/>}/> */}
         <Route path="/mainIngredient" element = {<MainIngredientList meals={mainIngredient}/>} />
         <Route path="/mainIngredient/:id" element = {<RecipeDetails meals={mainIngredient}/>} />
     </Routes>
