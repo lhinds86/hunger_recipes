@@ -33,6 +33,7 @@ function App () {
         <Route path="/mainIngredient" element = {<MainIngredientList meals={mainIngredient}/>} />
         <Route path="/mainIngredient/:id" element = {<RecipeDetails meals={mainIngredient}/>} />
     </Routes>
+    
       </div>
   )
 }

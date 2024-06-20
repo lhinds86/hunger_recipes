@@ -16,10 +16,13 @@ const MainIngredientList = (props) => {
     return (
       <div className="MainIngredientList">
         <button onClick={returnHome}>Return Home</button>
+      <div className="main-ingredient-card">
        {props.meals.map((meal)=> (
            <div className="MainDiv" onClick={()=>showMeal(meal)} key={meal.idMeal}>
+            <h2>{meal.strMeal}</h2>
+            <img src={meal.strMealThumb} alt={meal.strMeal} />
             <h2>MainIngredientList</h2>
-            <img src={meal.strMealThumb} alt={meal.strMeal} width='300' />
+            <img src={meal.strMealThumb} alt={meal.strMeal} />
             <ul>
                 <li>Name: {meal.strMeal}</li>
                 <li>Category: {meal.strCategory}</li>
@@ -28,6 +31,7 @@ const MainIngredientList = (props) => {
         </div>
     ))}
     </div>
+   </div> 
     )
-    }   
+}
   export default MainIngredientList
