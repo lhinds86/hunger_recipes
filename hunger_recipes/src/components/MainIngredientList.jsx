@@ -1,29 +1,28 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 import { useNavigate } from "react-router-dom"
 
 const MainIngredientList = (props) => {
    
     let navigate = useNavigate()
 
-    const showShip = (index) => {
-          navigate(`${index}`)
+    const showMeal = (meal) => {
+          navigate(`/mainIngredient/${meal.idMeal}`)
         }
 
     return (
       <div className="MainIngredientList">
-       <h2>MainIngredientList</h2>
-       {mainIngredient.map((starship,index)=> (
-        <div className="starshipDiv" onClick={()=>showShip(index)} key={index}>
+       {props.meals.map((meal)=> (
+           <div className="MainDiv" onClick={()=>showMeal(meal)} key={meal.idMeal}>
+            <h2>MainIngredientList</h2>
+            <img src={meal.strMealThumb} alt={meal.strMeal} />
             <ul>
-                <li>Name: {starship.name}</li>
-                <li>Manufactruer: {starship.manufacturer}</li>
-                <li>Cost: ${starship.cost_in_credits}</li>
-                <li>Capacity: {starship.passengers}</li>
+                <li>Name: {meal.strMeal}</li>
+                <li>Category: {meal.strCategory}</li>
+                <li>Area: {meal.strArea}</li>
             </ul>
         </div>
     ))}
     </div>
     )
     }   
-  export default MainIngredientListList
+  export default MainIngredientList
