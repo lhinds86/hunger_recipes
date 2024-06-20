@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const RecipeDetails = (props) => {
 
-  console.log('main project', props)
+  const navigate = useNavigate();
 
   const [meal, setMeal] = useState([])
   const [ingredients, setIngredients] = useState([])
@@ -12,7 +13,6 @@ const RecipeDetails = (props) => {
   const recipeToArray = (meal) => {
 
     let recipeArray = Object.entries(meal)
-    console.log(recipeArray)
 
     let ingredientsArray = recipeArray.filter((item) => item[0].includes('strIngredient') && item[1] !== '')
     
@@ -60,8 +60,13 @@ const RecipeDetails = (props) => {
     
   }, [props.meals, id])  
 
+  const returnPreviousPage= () => {
+    navigate('/mainIngredient');
+  };
+
   return meal ? (
     <div className="detail">
+      <button onClick={returnPreviousPage}>Previous Page</button>
       <img className="detail-img" src={meal.strMealThumb} alt={meal.strMeal}/>
       <h2>{meal.strMeal}</h2> 
       <ul style={{listStyleType: 'none'}}>
